@@ -25,17 +25,6 @@ const Skills = () => {
       ],
       gradient: "from-secondary to-secondary/70",
     },
-    {
-      title: "Future Skills",
-      icon: Brain,
-      skills: [
-        { name: "HTML/CSS", level: 60, color: "bg-emerald-500" },
-        { name: "JavaScript", level: 55, color: "bg-yellow-500" },
-        { name: "React", level: 50, color: "bg-cyan-500" },
-        { name: "Node.js", level: 45, color: "bg-lime-500" },
-      ],
-      gradient: "from-accent to-accent/70",
-    },
   ];
 
   return (
@@ -53,7 +42,7 @@ const Skills = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {skillCategories.map((category, index) => (
               <Card 
                 key={category.title} 
