@@ -43,8 +43,8 @@ const Contact = () => {
     {
       icon: Linkedin,
       title: "LinkedIn",
-      value: "linkedin.com/in/tarandeep-singh",
-      href: "https://linkedin.com/in/tarandeep-singh",
+      value: "linkedin.com/in/tarandeep-singh-535579288",
+      href: "https://linkedin.com/in/tarandeep-singh-535579288",
       color: "text-blue-600",
     },
     {
