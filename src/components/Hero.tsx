@@ -50,11 +50,15 @@ const Hero = () => {
                 Tarandeep Singh
               </span>
             </h1>
-            <h2 className="text-2xl md:text-3xl font-medium text-muted-foreground mb-4">
-              Aspiring Web Developer & CSE Student
+            <h2 className="text-2xl md:text-3xl font-medium mb-4">
+              <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+                Aspiring Web Developer & CSE Student
+              </span>
             </h2>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Turning passion into code. Building the future one line at a time.
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
+              <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent font-medium">
+                Turning passion into code. Building the future one line at a time.
+              </span>
             </p>
           </div>
 
