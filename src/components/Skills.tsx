@@ -60,33 +60,31 @@ const Skills = () => {
                 className={`shadow-card hover-lift animate-fade-in-up border-0 bg-gradient-to-br ${category.gradient} p-1`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="bg-white rounded-lg p-6 h-full">
-                  <CardContent className="p-0">
-                    <div className="text-center mb-6">
-                      <div className="inline-flex p-4 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-sm mb-4">
-                        <category.icon className="w-8 h-8 text-gray-700" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-800">{category.title}</h3>
+                <CardContent className="p-6">
+                  <div className="text-center mb-6">
+                    <div className="inline-flex p-4 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-sm mb-4">
+                      <category.icon className="w-8 h-8 text-gray-700" />
                     </div>
+                    <h3 className="text-xl font-semibold text-gray-800">{category.title}</h3>
+                  </div>
 
-                    <div className="space-y-4">
-                      {category.skills.map((skill) => (
-                        <div key={skill.name} className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium text-gray-700">{skill.name}</span>
-                            <span className="text-sm text-gray-500">{skill.level}%</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div
-                              className={`h-2 rounded-full ${skill.color} transition-all duration-1000 ease-out`}
-                              style={{ width: `${skill.level}%` }}
-                            />
-                          </div>
+                  <div className="space-y-4">
+                    {category.skills.map((skill) => (
+                      <div key={skill.name} className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm font-medium text-gray-700">{skill.name}</span>
+                          <span className="text-sm text-gray-500">{skill.level}%</span>
                         </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className={`h-2 rounded-full ${skill.color} transition-all duration-1000 ease-out`}
+                            style={{ width: `${skill.level}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
               </Card>
             ))}
           </div>
