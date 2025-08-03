@@ -9,6 +9,8 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
+    "homepage": "https://tarandeep52.github.io/tarandeep-portfolio"
+
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
