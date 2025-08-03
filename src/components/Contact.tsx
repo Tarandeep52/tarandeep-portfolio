@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Mail, Linkedin, Github, MapPin, Send, Phone } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, Send, Phone, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,16 +14,50 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // EmailJS configuration
+  const EMAILJS_SERVICE_ID = 'service_am2q3ua';
+  const EMAILJS_TEMPLATE_ID = 'template_w0yi8b4';
+  const EMAILJS_PUBLIC_KEY = 'cVQo7JIX9ZVEpdhde';
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      // Send email using EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_name: 'Tarandeep Singh',
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for reaching out. I'll get back to you soon!",
+      });
+
+      // Reset form
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast({
+        variant: "destructive",
+        title: "Failed to Send Message",
+        description: "Something went wrong. Please try again or contact me directly.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -140,12 +175,13 @@ const Contact = () => {
                         <label htmlFor="name" className="block text-sm font-medium mb-2">
                           Name *
                         </label>
-                        <Input
+                         <Input
                           id="name"
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
                           required
+                          disabled={isSubmitting}
                           placeholder="Your full name"
                           className="border-muted focus:border-primary"
                         />
@@ -154,13 +190,14 @@ const Contact = () => {
                         <label htmlFor="email" className="block text-sm font-medium mb-2">
                           Email *
                         </label>
-                        <Input
+                         <Input
                           id="email"
                           name="email"
                           type="email"
                           value={formData.email}
                           onChange={handleChange}
                           required
+                          disabled={isSubmitting}
                           placeholder="your.email@example.com"
                           className="border-muted focus:border-primary"
                         />
@@ -171,12 +208,13 @@ const Contact = () => {
                       <label htmlFor="subject" className="block text-sm font-medium mb-2">
                         Subject *
                       </label>
-                      <Input
+                       <Input
                         id="subject"
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
                         required
+                        disabled={isSubmitting}
                         placeholder="What's this about?"
                         className="border-muted focus:border-primary"
                       />
@@ -186,25 +224,36 @@ const Contact = () => {
                       <label htmlFor="message" className="block text-sm font-medium mb-2">
                         Message *
                       </label>
-                      <Textarea
+                       <Textarea
                         id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
                         required
+                        disabled={isSubmitting}
                         placeholder="Tell me about your project, opportunity, or just say hello!"
                         rows={6}
                         className="border-muted focus:border-primary resize-none"
                       />
                     </div>
                     
-                    <Button
+                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-elegant"
+                      disabled={isSubmitting}
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-elegant disabled:opacity-50"
                     >
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Message
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>
