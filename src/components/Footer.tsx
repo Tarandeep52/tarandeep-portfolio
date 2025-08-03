@@ -1,10 +1,7 @@
 import { Heart, Github, Linkedin, Mail } from "lucide-react";
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  return (
-    <footer className="bg-foreground text-background py-12">
+  return <footer className="bg-foreground text-background py-12">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -17,22 +14,13 @@ const Footer = () => {
                 Aspiring Web Developer & CSE Student passionate about creating innovative solutions through code.
               </p>
               <div className="flex gap-4">
-                <a
-                  href="mailto:tarandeep@example.com"
-                  className="p-2 bg-white/10 rounded-lg hover:bg-primary transition-smooth"
-                >
+                <a href="mailto:tarandeep@example.com" className="p-2 bg-white/10 rounded-lg hover:bg-primary transition-smooth">
                   <Mail size={20} />
                 </a>
-                <a
-                  href="https://linkedin.com/in/tarandeep-singh"
-                  className="p-2 bg-white/10 rounded-lg hover:bg-primary transition-smooth"
-                >
+                <a href="https://linkedin.com/in/tarandeep-singh" className="p-2 bg-white/10 rounded-lg hover:bg-primary transition-smooth">
                   <Linkedin size={20} />
                 </a>
-                <a
-                  href="https://github.com/tarandeep-singh"
-                  className="p-2 bg-white/10 rounded-lg hover:bg-primary transition-smooth"
-                >
+                <a href="https://github.com/tarandeep-singh" className="p-2 bg-white/10 rounded-lg hover:bg-primary transition-smooth">
                   <Github size={20} />
                 </a>
               </div>
@@ -42,16 +30,13 @@ const Footer = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2">
-                {["Home", "About", "Skills", "Projects", "Contact"].map((item) => (
-                  <li key={item}>
-                    <button
-                      onClick={() => document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: "smooth" })}
-                      className="text-muted hover:text-primary transition-smooth"
-                    >
+                {["Home", "About", "Skills", "Projects", "Contact"].map(item => <li key={item}>
+                    <button onClick={() => document.getElementById(item.toLowerCase())?.scrollIntoView({
+                  behavior: "smooth"
+                })} className="text-muted hover:text-primary transition-smooth">
                       {item}
                     </button>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
             </div>
 
@@ -60,7 +45,7 @@ const Footer = () => {
               <h4 className="text-lg font-semibold mb-4">Let's Connect</h4>
               <p className="text-muted mb-2">Open for internship opportunities</p>
               <p className="text-muted mb-2">Punjab, India</p>
-              <p className="text-muted">tarandeep@example.com</p>
+              <p className="text-muted">singhtaran2079@gmail.com</p>
             </div>
           </div>
 
@@ -73,8 +58,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
